@@ -17,10 +17,19 @@
       <img class="SP" src="@/assets/icon/icon-arrow-48.svg" alt="arrow" />
     </div>
     <div class="clock">12:24</div>
+    <ProfileContainer :profile="profile" />
   </div>
 </template>
 
 <script>
+export default {
+  props: {
+    profile: {
+      type: Object,
+      required: true,
+    }
+  }
+};
 </script>
 
 <style lang="scss">
