@@ -142,34 +142,34 @@ export default {
 
     .description {
       h1 {
-        font-size: 14px !important;
-        font-weight: normal !important;
-        margin-bottom: 24px !important;
+        font-size: 14px ;
+        font-weight: normal ;
+        margin-bottom: 24px ;
       }
 
       h2 {
-        font-size: 14px !important;
-        font-weight: normal !important;
-        margin-bottom: 24px !important;
+        font-size: 14px ;
+        font-weight: normal ;
+        margin-bottom: 24px ;
       }
 
       p {
-        font-size: 16px !important;
-        font-weight: normal !important;
-        line-height: 150% !important;
-        margin-bottom: 24px !important;
+        font-size: 16px ;
+        font-weight: normal ;
+        line-height: 150% ;
+        margin-bottom: 24px ;
       }
 
       a {
-        font-size: 16px !important;
-        font-weight: normal !important;
+        font-size: 16px ;
+        font-weight: normal ;
         color: $accent;
-        margin-bottom: 24px !important;
+        margin-bottom: 24px ;
       }
 
       img {
-        display: block !important;
-        max-width: 100% !important;
+        display: block ;
+        max-width: 100% ;
       }
     }
 

@@ -1,6 +1,10 @@
 <template>
   <!--ヘッダー-->
-  <div class="header">
+  <div
+    v-on:click="$route.path == '/' ? isActive = !isActive : ''"
+    v-bind:class="[isActive ? 'active' : '']"
+    class="header"
+  >
     <!--ロゴ-->
     <img
       class="main-logo PC"
@@ -22,13 +26,20 @@
 </template>
 
 <script>
+import anime from "animejs";
+
 export default {
   props: {
     profile: {
       type: Object,
       required: true,
-    }
-  }
+    },
+  },
+  data() {
+    return {
+      isActive: false,
+    };
+  },
 };
 </script>
 
@@ -82,7 +93,7 @@ export default {
   }
 }
 
-.header:active {
+.header.active {
   min-width: calc(100vw - 88px);
 
   .profile-container {
@@ -108,7 +119,7 @@ export default {
     }
   }
 
-  .header:active {
+  .header.active {
     min-width: calc(100vw - 48px);
 
     .profile-container {
