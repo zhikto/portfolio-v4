@@ -1,0 +1,35 @@
+$black: #000000;
+$white: #FFFFFF;
+$accent: #FFE600;
+
+html {
+    background-color: $black;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100vw;
+    font-family: "Futo Go B101", "Helvetica"
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.SP {
+    display: none;
+}
+
+.PC {
+    display: block;
+}
+
+@media screen and (max-width:800px) {
+    .PC {
+        display: none;
+    }
+
+    .SP {
+        display: block;
+    }
+}
