@@ -115,7 +115,7 @@ export default {
 
 @media screen and (max-width: 800px) {
   .profile {
-    padding: 72px 12px 0 12px;
+    padding: 72px 12px 0 0;
     width: 100%;
 
     .section {

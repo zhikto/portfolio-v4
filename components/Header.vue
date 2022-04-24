@@ -1,7 +1,10 @@
 <template>
   <!--ヘッダー-->
   <div
-    v-on:click="$route.path == '/' ? (isActive = !isActive) : ''"
+    v-on:click="
+      watcherActive();
+      profileVisible();
+    "
     v-bind:class="[isActive ? 'active' : '']"
     class="header"
   >
@@ -20,7 +23,7 @@
       <img class="PC" src="@/assets/icon/icon-arrow-88.svg" alt="arrow" />
       <img class="SP" src="@/assets/icon/icon-arrow-48.svg" alt="arrow" />
     </div>
-    <div class="clock">{{ time }}</div>
+    <Clock />
     <ProfileContainer :profile="profile" />
   </div>
 </template>
@@ -38,28 +41,49 @@ export default {
   data() {
     return {
       isActive: false,
-      time: "00:00",
     };
   },
-  mounted: function () {
-    let timerID = setInterval(this.updateTime, 1000);
-  },
   methods: {
-    updateTime: function () {
-      let current_date = new Date();
-      this.time =
-        this.zeroPadding(current_date.getHours(), 2) +
-        ":" +
-        this.zeroPadding(current_date.getMinutes(), 2);
-    },
-    zeroPadding: function (num, len) {
-      let zero = "";
-
-      for (var i = 0; i < len; i++) {
-        zero += "0";
+    watcherActive() {
+      if (this.$route.path == "/") {
+        this.isActive = !this.isActive;
       }
-
-      return (zero + num).slice(-len);
+    },
+    profileVisible() {
+      if (this.isActive) {
+        var tl = anime.timeline({
+          easing: "easeInOutQuint",
+        });
+        tl.add({
+          targets: ".profile-container",
+          opacity: [0, 1],
+          duration: 1,
+        })
+          .add({
+            targets: ".profile-image",
+            delay: 200,
+            duration: 500,
+            scale: [0.9, 1],
+            opacity: [0, 1],
+          })
+          .add(
+            {
+              targets: ".section",
+              opacity: [0, 1],
+              duration: 1000,
+              translateY: [100, 0],
+              delay: anime.stagger(100),
+            },
+            "-=500"
+          );
+      } else {
+        anime({
+          targets: ".profile-container",
+          opacity: [1, 0],
+          duration: 300,
+          easing: "easeInOutQuint",
+        });
+      }
     },
   },
 };
@@ -78,7 +102,7 @@ export default {
 
   background-color: $black;
 
-  transition: all 300ms 0s ease;
+  transition: all 600ms 0s cubic-bezier(0.86, 0, 0.07, 1);
 
   .main-logo {
     position: absolute;
@@ -99,20 +123,6 @@ export default {
       width: 100%;
     }
   }
-
-  .clock {
-    width: 88px;
-
-    margin-bottom: 40px;
-
-    position: absolute;
-    bottom: 0;
-
-    font-size: 16px;
-    color: $white;
-    text-align: center;
-    line-height: 100%;
-  }
 }
 
 .header.active {
@@ -130,14 +140,6 @@ export default {
 
     .main-logo {
       margin-top: 24px;
-    }
-
-    .clock {
-      width: 48px;
-
-      margin-bottom: 24px;
-
-      font-size: 10px;
     }
   }
 

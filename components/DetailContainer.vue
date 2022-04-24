@@ -3,10 +3,7 @@
     <!--作品画像ギャラリー-->
     <div class="work-image-gallery">
       <div class="image-list">
-        <picture class="image-container">
-          <source :srcset="work.thumbnail.url + '?fm=webp'" type="image/webp" />
-          <img :src="work.thumbnail.url" />
-        </picture>
+        <WorkImage :work="work" />
       </div>
     </div>
     <!--作品説明-->
@@ -208,7 +205,7 @@ export default {
           padding-bottom: 1px;
         }
 
-        .image-container:not(:last-child) {
+        .image-container:not(:first-child) {
           display: none;
         }
       }

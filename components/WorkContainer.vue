@@ -13,13 +13,7 @@
         <p class="work-date">{{ work.period }}</p>
       </div>
       <!--作品画像-->
-      <picture class="work-image">
-          <source
-            :srcset="work.thumbnail.url + '?fm=webp'"
-            type="image/webp"
-          />
-          <img :src="work.thumbnail.url" alt="">
-        </picture>
+      <WorkImage :work="work" />
     </nuxt-link>
   </div>
 </template>

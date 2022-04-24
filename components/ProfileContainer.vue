@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import anime from "animejs";
+
 export default {
   props: {
     profile: {
@@ -20,17 +22,23 @@ export default {
 @import "assets/style/global.scss";
 
 .profile-container {
-  display: none;
+  display: flex;
   align-items: center;
   margin-left: 88px;
   width: auto;
   height: 100vh;
+  overflow-y: scroll;
+}
+
+.profile-container::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 800px) {
-
   .profile-container {
+    display: block;
     padding-top: 80px;
+    padding-bottom: 120px;
     margin-left: 48px;
   }
 }
