@@ -1,7 +1,8 @@
 <template>
-  <div class="profile-image">
-    <img :src="profile.profileImage.url" alt="" />
-  </div>
+  <picture class="profile-image">
+    <source :srcset="profile.profileImage.url + '?fm=webp'" type="image/webp" />
+    <img :src="profile.profileImage.url">
+  </picture>
 </template>
 
 <script>

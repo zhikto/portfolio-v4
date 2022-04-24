@@ -1,7 +1,7 @@
 <template>
   <div class="base-container">
-    <Header :profile="profile"/>
-    <Container :work="work"/>
+    <Header :profile="profile" />
+    <Container :work="work" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
     });
     return {
       work: work,
-      profile: profile
+      profile: profile,
     };
   },
 };

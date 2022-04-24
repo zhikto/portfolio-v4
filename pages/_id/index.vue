@@ -1,6 +1,6 @@
 <template>
   <div class="base-container">
-    <Header :profile="profile"/>
+    <Header :profile="profile" />
     <Container :work="work" />
   </div>
 </template>

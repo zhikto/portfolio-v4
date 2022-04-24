@@ -3,9 +3,10 @@
     <!--作品画像ギャラリー-->
     <div class="work-image-gallery">
       <div class="image-list">
-        <div class="image-container">
-          <img :src="work.thumbnail.url" alt="" />
-        </div>
+        <picture class="image-container">
+          <source :srcset="work.thumbnail.url + '?fm=webp'" type="image/webp" />
+          <img :src="work.thumbnail.url" />
+        </picture>
       </div>
     </div>
     <!--作品説明-->
@@ -45,8 +46,8 @@ export default {
     work: {
       type: Object,
       required: true,
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -124,14 +125,14 @@ export default {
       padding: 0;
 
       li {
-        width: 240px;
-        margin-bottom: 16px;
+        width: 276px;
+        margin-bottom: 12px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         p {
-          font-size: 16px;
+          font-size: 14px;
         }
       }
 
@@ -142,34 +143,34 @@ export default {
 
     .description {
       h1 {
-        font-size: 14px ;
-        font-weight: normal ;
-        margin-bottom: 24px ;
+        font-size: 14px;
+        font-weight: normal;
+        margin-bottom: 24px;
       }
 
       h2 {
-        font-size: 14px ;
-        font-weight: normal ;
-        margin-bottom: 24px ;
+        font-size: 14px;
+        font-weight: normal;
+        margin-bottom: 24px;
       }
 
       p {
-        font-size: 16px ;
-        font-weight: normal ;
-        line-height: 150% ;
-        margin-bottom: 24px ;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 150%;
+        margin-bottom: 24px;
       }
 
       a {
-        font-size: 16px ;
-        font-weight: normal ;
+        font-size: 16px;
+        font-weight: normal;
         color: $accent;
-        margin-bottom: 24px ;
+        margin-bottom: 24px;
       }
 
       img {
-        display: block ;
-        max-width: 100% ;
+        display: block;
+        max-width: 100%;
       }
     }
 
@@ -218,9 +219,57 @@ export default {
       overflow-y: initial;
       padding: 40px 24px;
 
+      .work-title {
+        h1 {
+          font-size: 20px;
+          margin-bottom: 12px;
+        }
+
+        h2 {
+          font-size: 12px;
+          margin-bottom: 12px;
+        }
+
+        p {
+          font-size: 8px;
+        }
+      }
+
+      .work-info {
+        li {
+          width: 100%;
+          margin-bottom: 8px;
+
+          p {
+            font-size: 10px;
+          }
+        }
+      }
+
+      .description {
+        h1 {
+          font-size: 12px;
+          margin-bottom: 24px;
+        }
+
+        h2 {
+          font-size: 14px;
+          font-weight: normal;
+          margin-bottom: 24px;
+        }
+
+        p {
+          font-size: 14px;
+          margin-bottom: 40px;
+        }
+
+        a {
+          font-size: 14px;
+          margin-bottom: 40px;
+        }
+      }
+
       .copyright {
-        display: block;
-        width: 100%;
         font-size: 8px;
       }
     }

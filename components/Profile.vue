@@ -11,15 +11,15 @@
     <ul class="link section">
       <li>
         <p>TWITTER</p>
-        <a :href="profile.twitterLink">{{ profile.twitter }}</a>
+        <a :href="profile.twitterLink" target="_blank">{{ profile.twitter }}</a>
       </li>
       <li>
         <p>INSTAGRAM</p>
-        <a :href="profile.instagramLink">{{ profile.instagram }}</a>
+        <a :href="profile.instagramLink" target="_blank">{{ profile.instagram }}</a>
       </li>
       <li>
         <p>CONTACT</p>
-        <a :href="profile.contact">{{ profile.contact }}</a>
+        <a :href="'mailto:' + profile.contact">{{ profile.contact }}</a>
       </li>
     </ul>
   </div>

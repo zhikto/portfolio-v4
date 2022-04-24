@@ -1,7 +1,7 @@
 <template>
   <!--ヘッダー-->
   <div
-    v-on:click="$route.path == '/' ? isActive = !isActive : ''"
+    v-on:click="$route.path == '/' ? (isActive = !isActive) : ''"
     v-bind:class="[isActive ? 'active' : '']"
     class="header"
   >
@@ -20,7 +20,7 @@
       <img class="PC" src="@/assets/icon/icon-arrow-88.svg" alt="arrow" />
       <img class="SP" src="@/assets/icon/icon-arrow-48.svg" alt="arrow" />
     </div>
-    <div class="clock">12:24</div>
+    <div class="clock">{{ time }}</div>
     <ProfileContainer :profile="profile" />
   </div>
 </template>
@@ -38,7 +38,29 @@ export default {
   data() {
     return {
       isActive: false,
+      time: "00:00",
     };
+  },
+  mounted: function () {
+    let timerID = setInterval(this.updateTime, 1000);
+  },
+  methods: {
+    updateTime: function () {
+      let current_date = new Date();
+      this.time =
+        this.zeroPadding(current_date.getHours(), 2) +
+        ":" +
+        this.zeroPadding(current_date.getMinutes(), 2);
+    },
+    zeroPadding: function (num, len) {
+      let zero = "";
+
+      for (var i = 0; i < len; i++) {
+        zero += "0";
+      }
+
+      return (zero + num).slice(-len);
+    },
   },
 };
 </script>
