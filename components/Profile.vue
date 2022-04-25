@@ -44,7 +44,7 @@
   color: $white;
 
   .section {
-    margin-bottom: 40px;
+    margin-bottom: 48px;
     line-height: 100%;
     font-weight: normal;
   }
@@ -68,21 +68,21 @@
 
   .career {
     h5 {
-      font-size: 12px;
-      margin-bottom: 4px;
+      font-size: 10px;
+      margin-bottom: 8px;
       font-weight: normal;
     }
 
     p {
-      font-size: 14px;
-      margin-bottom: 16px;
+      font-size: 12px;
+      margin-bottom: 24px;
       font-weight: normal;
     }
   }
 
   .field {
     p {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: normal;
     }
   }
@@ -99,12 +99,12 @@
       align-items: center;
 
       p {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: normal;
       }
 
       a {
-        font-size: 14px;
+        font-size: 12px;
         color: $accent;
         text-decoration: none;
       }

@@ -18,7 +18,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src:"//typesquare.com/3/tsst/script/ja/typesquare.js?5fec60fb4f244dcbbb4b7f24ac1e02e5&auto_load_font=true" }
+      { src: "//typesquare.com/3/tsst/script/ja/typesquare.js?5fec60fb4f244dcbbb4b7f24ac1e02e5&auto_load_font=true" }
     ]
   },
 
@@ -51,5 +51,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
 }

@@ -2,7 +2,9 @@
   <div class="base-container">
     <Header />
     <div class="container">
-      <nuxt />
+      <transition name="page">
+        <nuxt />
+      </transition>
     </div>
   </div>
 </template>

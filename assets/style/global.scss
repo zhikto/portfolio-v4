@@ -1,6 +1,6 @@
 $black: #000000;
-$white: #FFFFFF;
-$accent: #FFE600;
+$white: #ffffff;
+$accent: #ffe600;
 
 html {
     background-color: $black;
@@ -9,7 +9,7 @@ html {
 body {
     overflow-x: hidden;
     width: 100vw;
-    font-family: "太ゴB101";
+    font-family: "Gothic Medium BBB";
 }
 
 body::-webkit-scrollbar {
@@ -24,7 +24,17 @@ body::-webkit-scrollbar {
     display: block;
 }
 
-@media screen and (max-width:800px) {
+.page-enter-active,
+.page-leave-active {
+    transition: all 0.6s ease;
+}
+
+.page-enter,
+.page-leave-to {
+    opacity: 0;
+}
+
+@media screen and (max-width: 800px) {
     .PC {
         display: none;
     }

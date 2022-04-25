@@ -59,11 +59,9 @@ export default {
   height: 100vh;
   overflow-y: hidden;
 
-  padding-left: 2px;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 2px;
+  grid-gap: 1px;
 
   overflow-x: hidden;
 
@@ -78,7 +76,7 @@ export default {
       background-color: $white;
 
       .image-container {
-        padding-bottom: 2px;
+        border-bottom: 1px solid $white;
 
         img {
           width: 100%;
@@ -193,8 +191,6 @@ export default {
     height: 100vh;
     overflow-y: scroll;
 
-    padding-left: 1px;
-
     display: block;
 
     overflow-x: hidden;
@@ -204,10 +200,6 @@ export default {
       overflow-y: initial;
 
       .image-list {
-        .image-container {
-          padding-bottom: 1px;
-        }
-
         .image-container:not(:first-child) {
           display: none;
         }

@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import anime from "animejs";
+
 export default {
   layout: "default",
   async asyncData({ $microcms }) {
@@ -28,6 +30,15 @@ export default {
     return {
       work: work,
     };
+  },
+  mounted() {
+    anime({
+      targets: ".work-image",
+      opacity: [0, 1],
+      duration: 1000,
+      easing: "easeInOutQuart",
+      delay: anime.stagger(150),
+    });
   },
 };
 </script>
@@ -39,11 +50,9 @@ export default {
 .work-container {
   min-width: calc(100vw - 88px);
 
-  padding-left: 2px;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 2px;
+  grid-gap: 1px;
 
   overflow-x: hidden;
 
@@ -52,6 +61,7 @@ export default {
   .work-thumbnail {
     position: relative;
     width: 100%;
+    background-color: $black;
 
     .work-info {
       position: absolute;
@@ -113,10 +123,6 @@ export default {
       );
     }
 
-    .work-image:hover::after img {
-      filter: grayscale(0);
-    }
-
     //画像とグラデーションのサイズ合わせ
     .work-image,
     .work-image::after {
@@ -129,7 +135,6 @@ export default {
     .work-image {
       img {
         filter: grayscale(0);
-        transition: 0.2s;
       }
     }
   }
@@ -144,12 +149,7 @@ export default {
 @media screen and (max-width: 800px) {
   .work-container {
     min-width: calc(100% - 48px);
-
-    padding-left: 1px;
-
-    display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 1px;
 
     .work-thumbnail {
       .work-info {

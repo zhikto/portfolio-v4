@@ -19,10 +19,7 @@
       src="@/assets/icon/icon-taito-48.svg"
       alt="logo"
     />
-    <div class="back" v-show="$route.path != '/'" @click="$router.go(-1)">
-      <img class="PC" src="@/assets/icon/icon-arrow-88.svg" alt="arrow" />
-      <img class="SP" src="@/assets/icon/icon-arrow-48.svg" alt="arrow" />
-    </div>
+    <Menu />
     <Clock />
     <ProfileContainer />
   </div>
@@ -90,13 +87,15 @@ export default {
   min-width: 88px;
   height: 100vh;
 
+  border-right: 1px solid $white;
+
   z-index: 999;
 
   cursor: pointer;
 
   background-color: $black;
 
-  transition: all 600ms 0s cubic-bezier(0.86, 0, 0.07, 1);
+  transition: all 800ms 0s cubic-bezier(0.86, 0, 0.07, 1);
 
   .main-logo {
     position: absolute;
