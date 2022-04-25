@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       isProfile: false,
-      isWork: true,
+      isWork: false,
     };
   },
   watch: {
