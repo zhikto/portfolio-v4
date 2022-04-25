@@ -24,7 +24,7 @@
       <img class="SP" src="@/assets/icon/icon-arrow-48.svg" alt="arrow" />
     </div>
     <Clock />
-    <ProfileContainer :profile="profile" />
+    <ProfileContainer />
   </div>
 </template>
 
@@ -32,12 +32,6 @@
 import anime from "animejs";
 
 export default {
-  props: {
-    profile: {
-      type: Object,
-      required: true,
-    },
-  },
   data() {
     return {
       isActive: false,

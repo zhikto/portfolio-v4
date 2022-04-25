@@ -1,19 +1,10 @@
 <template>
   <picture class="profile-image">
-    <source :srcset="profile.profileImage.url + '?fm=webp'" type="image/webp" />
-    <img :src="profile.profileImage.url">
+    <img src="@/assets/img/profile.jpg" />
   </picture>
 </template>
 
 <script>
-export default {
-  props: {
-    profile: {
-      type: Object,
-      required: true,
-    },
-  },
-};
 </script>
 
 <style lang="scss">

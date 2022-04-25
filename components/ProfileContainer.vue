@@ -1,21 +1,11 @@
 <template>
   <div class="profile-container">
-    <ProfileImage :profile="profile" />
-    <Profile :profile="profile" />
+    <ProfileImage />
+    <Profile />
   </div>
 </template>
 
 <script>
-import anime from "animejs";
-
-export default {
-  props: {
-    profile: {
-      type: Object,
-      required: true,
-    },
-  },
-};
 </script>
 
 <style lang="scss">

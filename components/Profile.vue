@@ -1,39 +1,38 @@
 <template>
   <div class="profile">
     <div class="name section">
-      <h1>{{ profile.name }}</h1>
-      <h2>{{ profile.nameEn }}</h2>
+      <h1>長谷川 泰斗</h1>
+      <h2>TAITO HASEGAWA</h2>
     </div>
-    <div class="career section" v-html="profile.career"></div>
+    <div class="career section">
+      <h5>1998 /</h5>
+      <p>茨城県生まれ</p>
+      <h5>2019 \</h5>
+      <p>茨城工業高等専門学校 電子制御工学科 卒業</p>
+      <h5>2019 /</h5>
+      <p>筑波大学 芸術専門学群 情報・プロダクトデザイン領域</p>
+    </div>
     <div class="field section">
-      <p>{{ profile.field }}</p>
+      <p>PRODUCT / UIUX / GRAPHIC / PLANNING</p>
     </div>
     <ul class="link section">
       <li>
         <p>TWITTER</p>
-        <a :href="profile.twitterLink" target="_blank">{{ profile.twitter }}</a>
+        <a href="https://twitter.com/taito_hasegawa" target="_blank">@taito_hasegawa</a>
       </li>
       <li>
         <p>INSTAGRAM</p>
-        <a :href="profile.instagramLink" target="_blank">{{ profile.instagram }}</a>
+        <a href="https://www.instagram.com/taito_hasegawa/" target="_blank">@taito_hasegawa</a>
       </li>
       <li>
         <p>CONTACT</p>
-        <a :href="'mailto:' + profile.contact">{{ profile.contact }}</a>
+        <a href="mailto:info@taito-hasegawa.com">info@taito-hasegawa.com</a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {
-  props: {
-    profile: {
-      type: Object,
-      required: true,
-    },
-  },
-};
 </script>
 
 <style lang="scss">

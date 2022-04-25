@@ -1,24 +1,25 @@
 <template>
-  <div class="container">
-    <WorkContainer v-if="$route.path == '/'" :work="work" />
-    <DetailContainer v-else :work="work" />
+  <div class="base-container">
+    <Header />
+    <div class="container">
+      <nuxt />
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  props: {
-    work: {
-      type: Object,
-      required: true,
-    }
-  }
-};
 </script>
 
 <style lang="scss">
 @import "assets/style/global.scss";
 @import "assets/style/reset.css";
+
+.base-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
 
 .container {
   min-width: calc(100vw - 88px);
