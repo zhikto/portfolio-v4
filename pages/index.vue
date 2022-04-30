@@ -29,6 +29,9 @@ export default {
   async asyncData({ $microcms }) {
     const work = await $microcms.get({
       endpoint: "work",
+      queries: {
+        limit: 100,
+      },
     });
     return {
       work: work,
@@ -160,11 +163,12 @@ export default {
 
         p {
           &:nth-child(1) {
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 10px;
           }
 
           &:nth-child(2) {
+            font-size: 9px;
             margin-bottom: 2px;
           }
         }

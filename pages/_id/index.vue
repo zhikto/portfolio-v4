@@ -61,6 +61,7 @@ export default {
   },
   mounted() {
     this.$adobeFonts(document);
+
     anime
       .timeline({
         easing: "easeInOutQuint",
@@ -204,6 +205,14 @@ export default {
       img {
         display: block;
         max-width: 100%;
+      }
+
+      iframe {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        display: block;
       }
     }
 
