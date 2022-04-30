@@ -15,11 +15,8 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
     ],
-    script: [
-      { src: "//typesquare.com/3/tsst/script/ja/typesquare.js?5fec60fb4f244dcbbb4b7f24ac1e02e5&auto_load_font=true" }
-    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -30,6 +27,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/adobe-fonts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

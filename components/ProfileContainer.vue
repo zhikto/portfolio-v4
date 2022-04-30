@@ -16,8 +16,10 @@
   align-items: center;
   margin-left: 88px;
   width: auto;
-  height: 100vh;
+  height: 100%;
   overflow-y: scroll;
+  will-change: opacity;
+  transform: translate3d(0,0,0);
 }
 
 .profile-container::-webkit-scrollbar {

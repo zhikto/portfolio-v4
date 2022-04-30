@@ -1,43 +1,54 @@
 <template>
-  <div class="detail-container">
-    <!--作品画像ギャラリー-->
-    <div class="work-image-gallery">
-      <div class="image-list">
-        <WorkImage :work="work" />
+  <div class="container">
+    <div class="detail-container">
+      <!--作品説明-->
+      <div class="work-about">
+        <div class="work-title section">
+          <h1>{{ work.title }}</h1>
+          <h2>{{ work.subTitle }}</h2>
+          <p>{{ work.workTag }}</p>
+        </div>
+        <ul class="work-info section">
+          <li v-show="work.overview">
+            <p>概要</p>
+            <p>{{ work.overview }}</p>
+          </li>
+          <li v-show="work.theme">
+            <p>テーマ</p>
+            <p>{{ work.theme }}</p>
+          </li>
+          <li v-show="work.role">
+            <p>担当</p>
+            <p>{{ work.role }}</p>
+          </li>
+          <li v-show="work.period">
+            <p>期間</p>
+            <p>{{ work.period }}</p>
+          </li>
+        </ul>
+        <div class="description section" v-html="work.text"></div>
+        <div class="copyright">©2022, TAITO HASEGAWA</div>
       </div>
-    </div>
-    <!--作品説明-->
-    <div class="work-about">
-      <div class="work-title section">
-        <h1>{{ work.title }}</h1>
-        <h2>{{ work.subTitle }}</h2>
-        <p>{{ work.workTag }}</p>
+      <!--作品画像ギャラリー-->
+      <div class="work-image-gallery">
+        <div class="image-list">
+          <picture
+            v-for="work in work.workImage"
+            :key="work.fieldId"
+            class="image-container"
+          >
+            <source :srcset="work.Image.url + '?fm=webp'" type="image/webp" />
+            <img :src="work.Image.url" />
+          </picture>
+        </div>
       </div>
-      <ul class="work-info section">
-        <li v-show="work.overview">
-          <p>概要</p>
-          <p>{{ work.overview }}</p>
-        </li>
-        <li v-show="work.theme">
-          <p>テーマ</p>
-          <p>{{ work.theme }}</p>
-        </li>
-        <li v-show="work.role">
-          <p>担当</p>
-          <p>{{ work.role }}</p>
-        </li>
-        <li v-show="work.period">
-          <p>期間</p>
-          <p>{{ work.period }}</p>
-        </li>
-      </ul>
-      <div class="description section" v-html="work.text"></div>
-      <div class="copyright">©TAITO HASEGAWA</div>
     </div>
   </div>
 </template>
 
 <script>
+import anime from "animejs";
+
 export default {
   layout: "default",
   async asyncData({ $microcms, params }) {
@@ -48,6 +59,29 @@ export default {
       work,
     };
   },
+  mounted() {
+    this.$adobeFonts(document);
+    anime
+      .timeline({
+        easing: "easeInOutQuint",
+      })
+      .add({
+        targets: ".section",
+        opacity: [0, 1],
+        duration: 800,
+        translateY: [50, 0],
+        delay: anime.stagger(100),
+      })
+      .add(
+        {
+          targets: ".image-container",
+          opacity: [0, 1],
+          duration: 800,
+          delay: anime.stagger(100),
+        },
+        "-=800"
+      );
+  },
 };
 </script>
 
@@ -56,11 +90,11 @@ export default {
 
 .detail-container {
   min-width: calc(100vw - 88px);
-  height: 100vh;
+  height: 100%;
   overflow-y: hidden;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 560px 1fr;
   grid-gap: 1px;
 
   overflow-x: hidden;
@@ -73,10 +107,15 @@ export default {
     background-color: $black;
 
     .image-list {
-      background-color: $white;
+      background-color: $black;
 
       .image-container {
         border-bottom: 1px solid $white;
+        will-change: transform, opacity;
+
+        &:last-child {
+          border-bottom: 0;
+        }
 
         img {
           width: 100%;
@@ -98,24 +137,22 @@ export default {
 
     .section {
       margin-bottom: 64px;
+      will-change: transform, opacity;
     }
 
     .work-title {
       h1 {
         font-size: 40px;
-        font-weight: normal;
         margin-bottom: 16px;
       }
 
       h2 {
         font-size: 16px;
-        font-weight: normal;
         margin-bottom: 16px;
       }
 
       p {
         font-size: 14px;
-        font-weight: normal;
       }
     }
 
@@ -123,7 +160,6 @@ export default {
       padding: 0;
 
       li {
-        width: 276px;
         margin-bottom: 12px;
         display: flex;
         justify-content: space-between;
@@ -142,26 +178,25 @@ export default {
     .description {
       h1 {
         font-size: 14px;
-        font-weight: normal;
         margin-bottom: 24px;
       }
 
       h2 {
         font-size: 14px;
-        font-weight: normal;
         margin-bottom: 24px;
       }
 
       p {
         font-size: 16px;
-        font-weight: normal;
-        line-height: 150%;
-        margin-bottom: 24px;
+        line-height: 175%;
+        margin-bottom: 48px;
+        letter-spacing: 0.02rem;
+        font-feature-settings: "palt";
+        text-align: justify;
       }
 
       a {
         font-size: 16px;
-        font-weight: normal;
         color: $accent;
         margin-bottom: 24px;
       }
@@ -188,10 +223,12 @@ export default {
 @media screen and (max-width: 800px) {
   .detail-container {
     min-width: calc(100vw - 48px);
-    height: 100vh;
+    height: auto;
     overflow-y: scroll;
 
-    display: block;
+    display: flex;
+    flex-direction: column-reverse;
+    grid-gap: 0;
 
     overflow-x: hidden;
 
@@ -245,8 +282,7 @@ export default {
         }
 
         h2 {
-          font-size: 14px;
-          font-weight: normal;
+          font-size: 12px;
           margin-bottom: 24px;
         }
 

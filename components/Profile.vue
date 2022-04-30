@@ -5,12 +5,9 @@
       <h2>TAITO HASEGAWA</h2>
     </div>
     <div class="career section">
-      <h5>1998 /</h5>
-      <p>茨城県生まれ</p>
-      <h5>2019 \</h5>
-      <p>茨城工業高等専門学校 電子制御工学科 卒業</p>
-      <h5>2019 /</h5>
-      <p>筑波大学 芸術専門学群 情報・プロダクトデザイン領域</p>
+      <p>1998 / 茨城県生まれ</p>
+      <p>2019 \ 茨城工業高等専門学校 電子制御工学科 卒業</p>
+      <p>2019 / 筑波大学 芸術専門学群 情報・プロダクトデザイン領域</p>
     </div>
     <div class="field section">
       <p>PRODUCT / UIUX / GRAPHIC / PLANNING</p>
@@ -26,7 +23,7 @@
       </li>
       <li>
         <p>CONTACT</p>
-        <a href="mailto:info@taito-hasegawa.com">info@taito-hasegawa.com</a>
+        <a href="mailto:hello@taito-hasegawa.com">hello@taito-hasegawa.com</a>
       </li>
     </ul>
   </div>
@@ -44,9 +41,11 @@
   color: $white;
 
   .section {
-    margin-bottom: 48px;
+    margin-bottom: 64px;
     line-height: 100%;
     font-weight: normal;
+    will-change: opacity, transform;
+    transform: translate3d(0,0,0);
   }
 
   .section:last-child {
@@ -68,13 +67,13 @@
 
   .career {
     h5 {
-      font-size: 10px;
+      font-size: 12px;
       margin-bottom: 8px;
       font-weight: normal;
     }
 
     p {
-      font-size: 12px;
+      font-size: 14px;
       margin-bottom: 24px;
       font-weight: normal;
     }
@@ -82,7 +81,7 @@
 
   .field {
     p {
-      font-size: 12px;
+      font-size: 14px;
       font-weight: normal;
     }
   }
@@ -99,12 +98,12 @@
       align-items: center;
 
       p {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: normal;
       }
 
       a {
-        font-size: 12px;
+        font-size: 14px;
         color: $accent;
         text-decoration: none;
       }
@@ -118,7 +117,7 @@
     width: 100%;
 
     .section {
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
     .name {

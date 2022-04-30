@@ -1,20 +1,23 @@
 <template>
-  <!--作品一覧-->
-  <div class="work-container">
-    <nuxt-link
-      v-for="work in work.contents"
-      :key="work.id"
-      :to="`/${work.id}`"
-      class="work-thumbnail"
-    >
-      <!--作品名・制作年-->
-      <div class="work-info">
-        <p class="work-title">{{ work.title }}</p>
-        <p class="work-date">{{ work.period }}</p>
-      </div>
-      <!--作品画像-->
-      <WorkImage :work="work" />
-    </nuxt-link>
+  <div class="container">
+    <!--作品一覧-->
+    <div class="work-container">
+      <nuxt-link
+        v-for="work in work.contents"
+        :key="work.id"
+        :to="`/${work.id}`"
+        class="work-thumbnail"
+      >
+        <!--作品名・制作年-->
+        <div class="work-info">
+          <p>{{ work.title }}</p>
+          <p>{{ work.workTag }}</p>
+          <p>{{ work.period }}</p>
+        </div>
+        <!--作品画像-->
+        <WorkImage :work="work" />
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -39,6 +42,7 @@ export default {
       easing: "easeInOutQuart",
       delay: anime.stagger(150),
     });
+    this.$adobeFonts(document);
   },
 };
 </script>
@@ -68,31 +72,28 @@ export default {
       bottom: 0;
       left: 0;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
       color: $white;
 
       z-index: 100;
 
       width: 100%;
-      height: 64px;
 
-      padding-left: 24px;
-      padding-right: 24px;
+      padding: 24px;
 
-      .work-title {
-        font-size: 16px;
-      }
-
-      .work-date {
-        font-size: 16px;
-      }
-
-      .work-title,
-      .work-date {
+      p {
         line-height: 100%;
+
+        &:nth-child(1) {
+          font-size: 16px;
+          margin-bottom: 16px;
+        }
+        &:not(:nth-child(1)) {
+          font-size: 10px;
+        }
+
+        &:nth-child(2) {
+          margin-bottom: 4px;
+        }
       }
     }
 
@@ -100,6 +101,8 @@ export default {
       position: absolute;
       top: 0;
       left: 0;
+      will-change: opacity;
+      transform: translate3d(0, 0, 0);
 
       img {
         width: 100%;
@@ -153,17 +156,17 @@ export default {
 
     .work-thumbnail {
       .work-info {
-        height: 44px;
+        padding: 16px;
 
-        padding-left: 16px;
-        padding-right: 16px;
+        p {
+          &:nth-child(1) {
+            font-size: 14px;
+            margin-bottom: 10px;
+          }
 
-        .work-title {
-          font-size: 12px;
-        }
-
-        .work-date {
-          font-size: 12px;
+          &:nth-child(2) {
+            margin-bottom: 2px;
+          }
         }
       }
     }

@@ -1,16 +1,33 @@
 <template>
-  <div class="base-container">
+  <div class="base-container" :style="style">
     <Header />
-    <div class="container">
-      <transition name="page">
-        <nuxt />
-      </transition>
-    </div>
+    <transition name="page">
+      <nuxt />
+    </transition>
   </div>
 </template>
 
 <script>
+export default {
+  data: () => ({
+    style: {
+      "--wh": "100vh",
+    },
+  }),
+  mounted() {
+    this.$nextTick(() => {
+      this.getWindowSize();
+      window.addEventListener("resize", this.getWindowSize);
+    });
+  },
+  methods: {
+    getWindowSize() {
+      this.style["--wh"] = `${window.innerHeight}px`;
+    },
+  },
+};
 </script>
+
 
 <style lang="scss">
 @import "assets/style/global.scss";
@@ -18,15 +35,19 @@
 
 .base-container {
   width: 100vw;
-  height: 100vh;
+  height: var(--wh, 100vh);
   display: flex;
   overflow-x: hidden;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
 }
 
 .container {
   min-width: calc(100vw - 88px);
-  height: 100vh;
+  height: 100%;
   overflow-y: scroll;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
 }
 
 .container::-webkit-scrollbar {

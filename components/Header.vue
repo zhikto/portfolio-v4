@@ -1,26 +1,23 @@
 <template>
   <!--ヘッダー-->
-  <div
-    v-on:click="
-      watcherActive();
-      profileVisible();
-    "
-    v-bind:class="[isActive ? 'active' : '']"
-    class="header"
-  >
+  <div v-bind:class="[isActive ? 'active' : '']" class="header">
     <!--ロゴ-->
-    <img
-      class="main-logo PC"
-      src="@/assets/icon/icon-taito-88.svg"
-      alt="logo"
-    />
-    <img
-      class="main-logo SP"
-      src="@/assets/icon/icon-taito-48.svg"
-      alt="logo"
-    />
-    <Menu />
-    <Clock />
+    <LogoAnimation />
+    <div
+      v-on:click="
+        stateProfile();
+        back();
+        watcherActive();
+        profileVisible();
+      "
+      v-bind:class="{ profilestate: isProfile, workstate: isWork }"
+      class="menu"
+    >
+      <div class="el-container">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
     <ProfileContainer />
   </div>
 </template>
@@ -32,7 +29,16 @@ export default {
   data() {
     return {
       isActive: false,
+      isProfile: false,
+      isWork: false,
     };
+  },
+  watch: {
+    $route: function (to, from) {
+      if (to.path !== from.path) {
+        this.stateWork();
+      }
+    },
   },
   methods: {
     watcherActive() {
@@ -76,6 +82,23 @@ export default {
         });
       }
     },
+    stateProfile() {
+      if (this.$route.path == "/") {
+        this.isProfile = !this.isProfile;
+      }
+    },
+    stateWork() {
+      if (this.$route.path != "/") {
+        this.isWork = true;
+      } else if (this.$route.path == "/") {
+        this.isWork = false;
+      }
+    },
+    back() {
+      if (this.$route.path != "/") {
+        this.$router.go(-1);
+      }
+    },
   },
 };
 </script>
@@ -85,17 +108,18 @@ export default {
 .header {
   width: 88px;
   min-width: 88px;
-  height: 100vh;
+  height: 100%;
 
   border-right: 1px solid $white;
 
   z-index: 999;
 
-  cursor: pointer;
-
   background-color: $black;
 
   transition: all 800ms 0s cubic-bezier(0.86, 0, 0.07, 1);
+
+  will-change: min-width;
+  transform: translate3d(0,0,0);
 
   .main-logo {
     position: absolute;
@@ -104,18 +128,6 @@ export default {
 
     margin-top: 40px;
   }
-
-  .back {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      width: 100%;
-    }
-  }
 }
 
 .header.active {
@@ -123,6 +135,89 @@ export default {
 
   .profile-container {
     display: flex;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 88px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.el-container,
+span {
+  display: inline-block;
+  transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.el-container {
+  position: relative;
+  width: 24px;
+  height: 16px;
+  background: none;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+
+  span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+  }
+
+  span:nth-of-type(1) {
+    top: 0;
+  }
+  span:nth-of-type(2) {
+    bottom: 0;
+  }
+}
+
+.menu.profilestate {
+  .el-container {
+    span:nth-of-type(1) {
+      transform: translateY(7px) rotate(-45deg);
+    }
+    span:nth-of-type(2) {
+      transform: translateY(-7px) rotate(45deg);
+    }
+  }
+}
+
+.menu.workstate {
+  .el-container {
+    span:nth-of-type(1),
+    span:nth-of-type(2) {
+      width: 22px;
+    }
+    span:nth-of-type(1) {
+      transform: translateY(1px) rotate(-35deg);
+    }
+    span:nth-of-type(2) {
+      transform: translateY(-1px) rotate(35deg);
+    }
+  }
+}
+
+.menu:hover {
+  .el-container {
+    transform: scale(0.9);
+    transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+}
+
+.menu:active {
+  .el-container {
+    transform: scale(0.8);
+    transition: all 0.1s cubic-bezier(0.86, 0, 0.07, 1);
   }
 }
 
@@ -141,6 +236,59 @@ export default {
 
     .profile-container {
       display: block;
+    }
+  }
+
+  .menu {
+    width: 48px;
+  }
+
+  .el-container {
+    width: 18px;
+    height: 12px;
+
+    span {
+      height: 1.5px;
+    }
+  }
+
+  .menu.profilestate {
+    .el-container {
+      span:nth-of-type(1) {
+        transform: translateY(5.2px) rotate(-45deg);
+      }
+      span:nth-of-type(2) {
+        transform: translateY(-5.2px) rotate(45deg);
+      }
+    }
+  }
+
+  .menu.workstate {
+    .el-container {
+      span:nth-of-type(1),
+      span:nth-of-type(2) {
+        width: 15px;
+      }
+      span:nth-of-type(1) {
+        transform: translateY(1.2px) rotate(-35deg);
+      }
+      span:nth-of-type(2) {
+        transform: translateY(-1.2px) rotate(35deg);
+      }
+    }
+  }
+
+  .menu:hover {
+    .el-container {
+      transform: scale(1);
+      transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+  }
+
+  .menu:active {
+    .el-container {
+      transform: scale(1);
+      transition: all 0.1s cubic-bezier(0.86, 0, 0.07, 1);
     }
   }
 }

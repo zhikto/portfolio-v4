@@ -1,15 +1,26 @@
 $black: #000000;
 $white: #ffffff;
-$accent: #ffe600;
+$accent: #00ff00;
 
 html {
     background-color: $black;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span {
+    font-family: fot-cezanne-pron, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     overflow-x: hidden;
     width: 100vw;
-    font-family: "Gothic Medium BBB";
 }
 
 body::-webkit-scrollbar {

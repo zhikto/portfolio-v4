@@ -11,6 +11,8 @@
 @import "assets/style/global.scss";
 .profile-image {
   width: 50%;
+  will-change: opacity, transform;
+  transform: translate3d(0,0,0);
 
   img {
     width: 100%;
