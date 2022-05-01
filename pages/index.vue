@@ -26,6 +26,12 @@ import anime from "animejs";
 
 export default {
   layout: "default",
+  head() {
+    return {
+      titleTemplate: null,
+      title: "TAITO HASEGAWA",
+    };
+  },
   async asyncData({ $microcms }) {
     const work = await $microcms.get({
       endpoint: "work",
@@ -159,7 +165,7 @@ export default {
 
     .work-thumbnail {
       .work-info {
-        padding: 16px;
+        padding: 14px;
 
         p {
           &:nth-child(1) {
@@ -168,8 +174,11 @@ export default {
           }
 
           &:nth-child(2) {
-            font-size: 9px;
             margin-bottom: 2px;
+          }
+
+          &:not(:nth-child(1)) {
+            font-size: 9px;
           }
         }
       }

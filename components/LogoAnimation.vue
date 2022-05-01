@@ -1,5 +1,5 @@
 <template>
-  <div class="animation-container">
+  <div v-on:click="$router.push('/')" class="animation-container">
     <div class="anim" ref="lavContainer"></div>
   </div>
 </template>
@@ -37,6 +37,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {

@@ -27,7 +27,7 @@
           </li>
         </ul>
         <div class="description section" v-html="work.text"></div>
-        <div class="copyright">©2022, TAITO HASEGAWA</div>
+        <div class="copyright">©2022 TAITO HASEGAWA</div>
       </div>
       <!--作品画像ギャラリー-->
       <div class="work-image-gallery">
@@ -82,6 +82,35 @@ export default {
         },
         "-=800"
       );
+  },
+  data() {
+    const url = "https://taito-hasegawa.com" + `${this.$route.path}`;
+    return {
+      meta: {
+        type: "article",
+        url: url,
+      },
+    };
+  },
+  head() {
+    return {
+      title: this.work.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.work.subTitle,
+        },
+        { hid: "og:type", property: "og:type", content: this.meta.type },
+        { hid: "og:title", property: "og:title", content: this.work.title },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: this.meta.description,
+        },
+        { hid: "og:url", property: "og:url", content: this.meta.url },
+      ],
+    };
   },
 };
 </script>
@@ -219,8 +248,14 @@ export default {
     .copyright {
       display: block;
       width: 100%;
+      font-family: ocr-b-std, monospace;
+      font-weight: 400;
+      font-style: normal;
       text-align: right;
-      font-size: 12px;
+      font-size: 10px;
+      line-height: 100%;
+      letter-spacing: -0.08rem;
+      font-feature-settings: "palt";
     }
   }
 
@@ -307,7 +342,7 @@ export default {
       }
 
       .copyright {
-        font-size: 8px;
+        font-size: 9px;
       }
     }
   }

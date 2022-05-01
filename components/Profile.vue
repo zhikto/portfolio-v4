@@ -15,17 +15,38 @@
     <ul class="link section">
       <li>
         <p>TWITTER</p>
-        <a href="https://twitter.com/taito_hasegawa" target="_blank">@taito_hasegawa</a>
+        <a href="https://twitter.com/taito_hasegawa" target="_blank"
+          >@taito_hasegawa</a
+        >
       </li>
       <li>
         <p>INSTAGRAM</p>
-        <a href="https://www.instagram.com/taito_hasegawa/" target="_blank">@taito_hasegawa</a>
+        <a href="https://www.instagram.com/taito_hasegawa/" target="_blank"
+          >@taito_hasegawa</a
+        >
       </li>
       <li>
         <p>CONTACT</p>
         <a href="mailto:hello@taito-hasegawa.com">hello@taito-hasegawa.com</a>
       </li>
     </ul>
+    <div class="version-text section">
+      <div>
+        <p>PORTFOLIO</p>
+        <p>VER</p>
+        <p>4.0.1</p>
+      </div>
+      <div>
+        <p>DESIGN</p>
+        <p>AND</p>
+        <p>DEVELOP</p>
+      </div>
+      <div>
+        <p>BY</p>
+        <p>TAITO HASEGAWA</p>
+        <p>2022</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,12 +61,19 @@
   width: 50%;
   color: $white;
 
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+
+  position: relative;
+
   .section {
     margin-bottom: 64px;
     line-height: 100%;
     font-weight: normal;
     will-change: opacity, transform;
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
   }
 
   .section:last-child {
@@ -109,12 +137,43 @@
       }
     }
   }
+
+  .link.section {
+    margin-bottom: 0;
+  }
+}
+
+.version-text {
+  width: auto;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 24px;
+
+  div {
+    display: flex;
+    width: 128px;
+    justify-content: space-between;
+
+    p {
+      font-family: ocr-b-std, monospace;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 10px;
+      line-height: 100%;
+      letter-spacing: -0.08rem;
+      font-feature-settings: "palt";
+      color: $white;
+    }
+  }
 }
 
 @media screen and (max-width: 800px) {
   .profile {
     padding: 72px 12px 0 0;
     width: 100%;
+    justify-content: flex-start;
 
     .section {
       margin-bottom: 40px;
@@ -160,6 +219,26 @@
         a {
           font-size: 10px;
         }
+      }
+    }
+  }
+
+  .version-text {
+    position: initial;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    margin-top: 80px;
+
+    div {
+      display: flex;
+      width: 128px;
+      justify-content: space-between;
+      transform-origin: center left;
+      transform: scale(0.7);
+
+      p {
+        font-size: 9px;
       }
     }
   }
