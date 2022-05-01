@@ -9,7 +9,6 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/sitemap": "^2.4.0",
     "animejs": "^3.2.1",
     "axios": "^0.26.1",
     "core-js": "^3.19.3",
@@ -18,8 +17,6 @@
     "nuxt-microcms-module": "^2.0.0",
     "sass-loader": "^10.1.1",
     "vue": "^2.6.14",
-    "vue-100vh": "^0.1.1",
-    "vue-div-100vh": "^0.2.1",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
     "webpack": "^4.46.0"
