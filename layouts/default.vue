@@ -34,20 +34,14 @@ export default {
 @import "assets/style/reset.css";
 
 .base-container {
-  width: 100vw;
-  height: var(--wh, 100vh);
-  display: flex;
-  overflow-x: hidden;
-  will-change: transform, opacity;
-  transform: translate3d(0, 0, 0);
+  width: 100%;
+  background-color: $background;
 }
 
 .container {
-  min-width: calc(100vw - 88px);
-  height: 100%;
-  overflow-y: scroll;
-  will-change: transform, opacity;
-  transform: translate3d(0, 0, 0);
+  width: 100%;
+  padding-left: 80px;
+  background-color: $background;
 }
 
 .container::-webkit-scrollbar {
@@ -56,7 +50,10 @@ export default {
 
 @media screen and (max-width: 800px) {
   .container {
-    min-width: calc(100vw - 48px);
+    width: 100%;
+    padding-top: 80px;
+    padding-left: 0;
+    background-color: $background;
   }
 }
 </style>

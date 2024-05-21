@@ -1,5 +1,16 @@
 {
   "projects": {
     "default": "portfolio-b2171"
-  }
+  },
+  "targets": {
+    "portfolio-b2171": {
+      "hosting": {
+        "portfolio-b2171": [
+          "portfolio-b2171"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

@@ -1,22 +1,22 @@
 <template>
   <div class="container">
     <!--作品一覧-->
-    <div class="work-container">
-      <nuxt-link v-for="work in work.contents" :key="work.id" :to="{ path: `/work/${work.id}` }" class="work-thumbnail">
+    <div class="diary-container">
+      <nuxt-link v-for="diary in diary.contents" :key="diary.id" :to="{ path: `/diary/${diary.id}` }"
+        class="diary-thumbnail">
         <!--作品画像-->
         <div>
-          <picture class="work-image">
-            <source :srcset="work.thumbnail.url + '?fm=webp'" type="image/webp" />
-            <img :src="work.thumbnail.url" />
+          <picture class="diary-image">
+            <source :srcset="diary.thumbnail.url + '?fm=webp'" type="image/webp" />
+            <img :src="diary.thumbnail.url" />
           </picture>
         </div>
         <!--作品名・制作年-->
-        <div class="work-info">
+        <div class="diary-info">
           <div class="info-text">
-            <p>{{ work.workTag }}</p>
-            <p>{{ work.period }}</p>
+            <p>{{ diary.date }}</p>
           </div>
-          <p>{{ work.title }}</p>
+          <p>{{ diary.title }}</p>
         </div>
       </nuxt-link>
     </div>
@@ -35,14 +35,14 @@ export default {
     };
   },
   async asyncData({ $microcms }) {
-    const work = await $microcms.get({
-      endpoint: "work",
+    const diary = await $microcms.get({
+      endpoint: "diary",
       queries: {
         limit: 100,
       },
     });
     return {
-      work: work,
+      diary: diary,
     };
   },
   mounted() {
@@ -64,7 +64,7 @@ export default {
 @import "assets/style/global.scss";
 @import "assets/style/reset.css";
 
-.work-container {
+.diary-container {
   display: flex;
   flex-wrap: wrap;
   gap: 64px 40px;
@@ -76,11 +76,11 @@ export default {
 
   background-color: $background;
 
-  .work-thumbnail {
+  .diary-thumbnail {
     width: 480px;
     text-decoration: none;
 
-    .work-info {
+    .diary-info {
       /*
       position: absolute;
       bottom: 0;
@@ -101,18 +101,18 @@ export default {
 
         p {
           line-height: 100%;
-          font-size: 12px;
+          font-size: 14px;
           margin: 16px 0;
         }
       }
 
       p {
         line-height: 100%;
-        font-size: 20px;
+        font-size: 24px;
       }
     }
 
-    .work-image {
+    .diary-image {
       /*
       position: absolute;
       top: 0;
@@ -136,8 +136,8 @@ export default {
     }
   }
 
-  .work-thumbnail:hover {
-    .work-image {
+  .diary-thumbnail:hover {
+    .diary-image {
       img {
         transform: scale(1.1);
         transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
@@ -147,26 +147,58 @@ export default {
 }
 
 @media screen and (max-width: 800px) {
-  .work-container {
+  .diary-container {
     padding: 24px 40px 120px 40px;
-    gap: 32px;
+    gap: 40px;
 
-    .work-thumbnail {
-      .work-info {
+    .diary-thumbnail {
+      width: 480px;
+      text-decoration: none;
+
+      .diary-info {
+        /*
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      */
         .info-text {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          justify-content: space-between;
+
           p {
-            font-size: 10px;
+            font-size: 12px;
             margin: 12px 0;
           }
         }
 
         p {
-          font-size: 16px;
+          font-size: 20px;
         }
       }
 
-      .work-image {
-        border-radius: 6px;
+      .diary-image {
+        /*
+      position: absolute;
+      top: 0;
+      left: 0;
+      */
+        will-change: opacity;
+        transform: translate3d(0, 0, 0);
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 8px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: 0.3s;
+          transform: scale(1);
+          transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+        }
       }
     }
   }

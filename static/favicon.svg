@@ -1,13 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-  <style>
-    path {
-      fill: #000000;
-    }
-    @media (prefers-color-scheme: dark) {
-      path {
-        fill: #FFFFFF;
-      }
-    }
-  </style>
-  <path d="M9.11,14.56,8.57,10,2.5,11.55,1.69,10,5.23,6.89H2.81L2.3,5.29,3.85,4.18l-.52-.09L3.6,2.35l2.65.41.38,1.59-1.08.78h2l.59,1.54L5.63,8.91l2.73-.72L7.65,2.13l1.54-.69,5.12,5.68-.43,1.44-3.58.95.57,4.85Zm.62-9.88.36,3.05L12,7.22Z" />
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="16" height="16"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <path d="M9.11,14.56,8.57,10,2.5,11.55,1.69,10,5.23,6.89H2.81L2.3,5.29,3.85,4.18l-.52-.09L3.6,2.35l2.65.41.38,1.59-1.08.78h2l.59,1.54L5.63,8.91l2.73-.72L7.65,2.13l1.54-.69,5.12,5.68-.43,1.44-3.58.95.57,4.85Zm.62-9.88.36,3.05L12,7.22Z"></path>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: invert(100%); } }
+</style></svg>

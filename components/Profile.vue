@@ -1,13 +1,14 @@
 <template>
   <div class="profile">
     <div class="name section">
-      <h1>長谷川 泰斗</h1>
+      <h1>{{ profile.name }}</h1>
       <h2>TAITO HASEGAWA</h2>
     </div>
     <div class="career section">
-      <p>1998 / 茨城県生まれ</p>
-      <p>2019 \ 茨城工業高等専門学校 電子制御工学科 卒業</p>
-      <p>2019 / 筑波大学 芸術専門学群 情報・プロダクトデザイン領域</p>
+      <p>1998 - 茨城県生まれ</p>
+      <p>2019 - 茨城工業高等専門学校 電子制御工学科 卒業</p>
+      <p>2023 - 筑波大学 芸術専門学群 情報・プロダクトデザイン領域 卒業</p>
+      <p>2023 - 筑波大学 人間総合科学学術院 人間総合科学研究群 博士前期課程 デザイン学学位プログラム 在籍</p>
     </div>
     <div class="field section">
       <p>PRODUCT / UIUX / GRAPHIC / PLANNING</p>
@@ -15,26 +16,22 @@
     <ul class="link section">
       <li>
         <p>TWITTER</p>
-        <a href="https://twitter.com/taito_hasegawa" target="_blank"
-          >@taito_hasegawa</a
-        >
+        <a href="https://twitter.com/taito_hasegawa" target="_blank">@taito_hasegawa</a>
       </li>
       <li>
         <p>INSTAGRAM</p>
-        <a href="https://www.instagram.com/taito_hasegawa/" target="_blank"
-          >@taito_hasegawa</a
-        >
+        <a href="https://www.instagram.com/taito_hasegawa/" target="_blank">@taito_hasegawa</a>
       </li>
       <li>
         <p>CONTACT</p>
-        <a href="mailto:hello@taito-hasegawa.com">hello@taito-hasegawa.com</a>
+        <a href="mailto:haset0819@gmail.com">haset0819@gmail.com</a>
       </li>
     </ul>
     <div class="version-text section">
       <div>
         <p>PORTFOLIO</p>
         <p>VER</p>
-        <p>4.0.1</p>
+        <p>5.0.0</p>
       </div>
       <div>
         <p>DESIGN</p>
@@ -44,27 +41,45 @@
       <div>
         <p>BY</p>
         <p>TAITO HASEGAWA</p>
-        <p>2022</p>
+        <p>2024</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+export default {
+  layout: "default",
+  data() {
+    return {
+      profile: null, // プロファイルを初期化
+    };
+  },
+  async asyncData({ $microcms }) {
+    const profile = await $microcms.get({
+      endpoint: "profile2",
+      queries: {
+        limit: 100,
+      },
+    });
+    return {
+      profile: profile,
+    };
+  },
+}
+
+
 </script>
 
 <style lang="scss">
 @import "assets/style/global.scss";
 
 .profile {
-  padding: 0 40px 0 40px;
-  width: 50%;
-  color: $white;
+  padding: 120px 40px;
+  width: 640px;
+  color: $black;
 
-  display: flex;
   height: 100%;
-  flex-direction: column;
-  justify-content: center;
 
   position: relative;
 

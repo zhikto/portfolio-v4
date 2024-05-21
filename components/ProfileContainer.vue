@@ -13,8 +13,7 @@
 
 .profile-container {
   display: flex;
-  align-items: center;
-  margin-left: 88px;
+  flex-direction: row;
   width: auto;
   height: 100%;
   overflow-y: scroll;

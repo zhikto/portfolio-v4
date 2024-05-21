@@ -1,6 +1,26 @@
 const uri = 'https://taito-hasegawa.com'
 
 export default {
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'work-id',
+        path: '/work/:id',
+        component: resolve(__dirname, 'pages/_id/index.vue'),
+        chunkName: 'pages/work-id'
+      });
+      routes.push({
+        name: 'diary-id',
+        path: '/diary/:id',
+        component: resolve(__dirname, 'pages/_id/index.vue'),
+        chunkName: 'pages/diary-id'
+      });
+    },
+    scrollBehavior(to, from, savedPosition) {
+      // スクロール位置を常にトップにリセット
+      return { x: 0, y: 0 }
+    }
+  },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -33,7 +53,9 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+      { rel: 'icon', sizes: "16x16", href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
     ],
   },
 
@@ -63,6 +85,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/dotenv',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

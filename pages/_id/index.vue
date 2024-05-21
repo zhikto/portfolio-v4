@@ -1,63 +1,86 @@
 <template>
   <div class="container">
-    <div class="detail-container">
-      <!--作品説明-->
-      <div class="work-about">
-        <div class="work-title section">
-          <h1>{{ work.title }}</h1>
-          <h2>{{ work.subTitle }}</h2>
-          <p>{{ work.workTag }}</p>
-        </div>
-        <ul class="work-info section">
-          <li v-show="work.overview">
-            <p>概要</p>
-            <p>{{ work.overview }}</p>
-          </li>
-          <li v-show="work.theme">
-            <p>テーマ</p>
-            <p>{{ work.theme }}</p>
-          </li>
-          <li v-show="work.role">
-            <p>担当</p>
-            <p>{{ work.role }}</p>
-          </li>
-          <li v-show="work.period">
-            <p>期間</p>
-            <p>{{ work.period }}</p>
-          </li>
-        </ul>
-        <div class="description section" v-html="work.text"></div>
-        <div class="copyright">©2022 TAITO HASEGAWA</div>
-      </div>
-      <!--作品画像ギャラリー-->
-      <div class="work-image-gallery">
-        <div class="image-list">
-          <picture
-            v-for="work in work.workImage"
-            :key="work.fieldId"
-            class="image-container"
-          >
-            <source :srcset="work.Image.url + '?fm=webp'" type="image/webp" />
-            <img :src="work.Image.url" />
-          </picture>
-        </div>
-      </div>
-    </div>
+    <component :is="componentType" :work="content" v-if="isWork && content" />
+    <component :is="componentType" :diary="content" v-if="isDiary && content" />
   </div>
 </template>
 
 <script>
 import anime from "animejs";
+import WorkContainer from '~/components/WorkContainer.vue';
+import DiaryContainer from '~/components/DiaryContainer.vue';
 
 export default {
   layout: "default",
-  async asyncData({ $microcms, params }) {
-    const work = await $microcms.get({
-      endpoint: `work/${params.id}`,
-    });
+  async asyncData({ $microcms, params, route, error }) {
+    let endpoint;
+    const path = route.path;
+
+    // デバッグのために route.path をログ出力
+    console.log('Route path:', path);
+
+    // エンドポイント判定ロジック
+    if (path.startsWith('/work')) {
+      endpoint = 'work';
+    } else if (path.startsWith('/diary')) {
+      endpoint = 'diary';
+    } else {
+      console.error('Unknown path:', path);
+      error({ statusCode: 404, message: 'Page not found' });
+      return;
+    }
+
+    // エンドポイントとIDの確認のためにログ出力
+    console.log(`Fetching data from endpoint: ${endpoint}/${params.id}`);
+
+    try {
+      const content = await $microcms.get({
+        endpoint: `${endpoint}/${params.id}`,
+      });
+      return {
+        content,
+        type: endpoint
+      };
+    } catch (err) {
+      console.error(`Error fetching data from ${endpoint}/${params.id}:`, err);
+      error({ statusCode: 500, message: 'Failed to fetch data from API' });
+    }
+  },
+  computed: {
+    componentType() {
+      return this.isWork ? 'WorkContainer' : 'DiaryContainer';
+    },
+    isWork() {
+      return this.type === 'work';
+    },
+    isDiary() {
+      return this.type === 'diary';
+    }
+  },
+  components: {
+    WorkContainer,
+    DiaryContainer
+  },
+  data() {
+    const url = "https://taito-hasegawa.com" + `${this.$route.path}`;
     return {
-      work,
+      content: null, // contentを初期化
+      type: '', // typeを初期化
+      meta: {
+        type: 'article',
+        url: url,
+        description: '',
+        title: ''
+      }
     };
+  },
+  watch: {
+    content(newContent) {
+      if (newContent) {
+        this.meta.title = newContent.title;
+        this.meta.description = newContent.subTitle;
+      }
+    }
   },
   mounted() {
     this.$adobeFonts(document);
@@ -83,26 +106,17 @@ export default {
         "-=800"
       );
   },
-  data() {
-    const url = "https://taito-hasegawa.com" + `${this.$route.path}`;
-    return {
-      meta: {
-        type: "article",
-        url: url,
-      },
-    };
-  },
   head() {
     return {
-      title: this.work.title,
+      title: this.meta.title,
       meta: [
         {
           hid: "description",
           name: "description",
-          content: this.work.subTitle,
+          content: this.meta.description,
         },
         { hid: "og:type", property: "og:type", content: this.meta.type },
-        { hid: "og:title", property: "og:title", content: this.work.title },
+        { hid: "og:title", property: "og:title", content: this.meta.title },
         {
           hid: "og:description",
           property: "og:description",
@@ -129,139 +143,7 @@ export default {
 
   overflow-x: hidden;
 
-  background-color: $white;
-
-  .work-image-gallery {
-    width: 100%;
-    overflow-y: scroll;
-    background-color: $black;
-
-    .image-list {
-      background-color: $black;
-
-      .image-container {
-        border-bottom: 1px solid $white;
-        will-change: transform, opacity;
-
-        &:last-child {
-          border-bottom: 0;
-        }
-
-        img {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  .work-image-gallery::-webkit-scrollbar {
-    display: none;
-  }
-
-  .work-about {
-    width: 100%;
-    overflow-y: scroll;
-    padding: 80px 40px;
-    background-color: $black;
-    color: $white;
-
-    .section {
-      margin-bottom: 64px;
-      will-change: transform, opacity;
-    }
-
-    .work-title {
-      h1 {
-        font-size: 40px;
-        margin-bottom: 16px;
-      }
-
-      h2 {
-        font-size: 16px;
-        margin-bottom: 16px;
-      }
-
-      p {
-        font-size: 14px;
-      }
-    }
-
-    .work-info {
-      padding: 0;
-
-      li {
-        margin-bottom: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        p {
-          font-size: 14px;
-        }
-      }
-
-      :last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    .description {
-      h1 {
-        font-size: 14px;
-        margin-bottom: 24px;
-      }
-
-      h2 {
-        font-size: 14px;
-        margin-bottom: 24px;
-      }
-
-      p {
-        font-size: 16px;
-        line-height: 175%;
-        margin-bottom: 48px;
-        letter-spacing: 0.02rem;
-        font-feature-settings: "palt";
-        text-align: justify;
-      }
-
-      a {
-        font-size: 16px;
-        color: $accent;
-        margin-bottom: 24px;
-      }
-
-      img {
-        display: block;
-        max-width: 100%;
-      }
-
-      iframe {
-        aspect-ratio: 16 / 9;
-        width: 100%;
-        max-width: 100%;
-        height: 100%;
-        display: block;
-      }
-    }
-
-    .copyright {
-      display: block;
-      width: 100%;
-      font-family: ocr-b-std, monospace;
-      font-weight: 400;
-      font-style: normal;
-      text-align: right;
-      font-size: 10px;
-      line-height: 100%;
-      letter-spacing: -0.08rem;
-      font-feature-settings: "palt";
-    }
-  }
-
-  .work-about::-webkit-scrollbar {
-    display: none;
-  }
+  background-color: $background;
 }
 
 @media screen and (max-width: 800px) {
@@ -275,76 +157,6 @@ export default {
     grid-gap: 0;
 
     overflow-x: hidden;
-
-    .work-image-gallery {
-      width: 100%;
-      overflow-y: initial;
-
-      .image-list {
-        .image-container:not(:first-child) {
-          display: none;
-        }
-      }
-    }
-
-    .work-about {
-      width: 100%;
-      overflow-y: initial;
-      padding: 40px 24px;
-
-      .work-title {
-        h1 {
-          font-size: 20px;
-          margin-bottom: 12px;
-        }
-
-        h2 {
-          font-size: 12px;
-          margin-bottom: 12px;
-        }
-
-        p {
-          font-size: 8px;
-        }
-      }
-
-      .work-info {
-        li {
-          width: 100%;
-          margin-bottom: 8px;
-
-          p {
-            font-size: 10px;
-          }
-        }
-      }
-
-      .description {
-        h1 {
-          font-size: 12px;
-          margin-bottom: 24px;
-        }
-
-        h2 {
-          font-size: 12px;
-          margin-bottom: 24px;
-        }
-
-        p {
-          font-size: 14px;
-          margin-bottom: 40px;
-        }
-
-        a {
-          font-size: 14px;
-          margin-bottom: 40px;
-        }
-      }
-
-      .copyright {
-        font-size: 9px;
-      }
-    }
   }
 }
 </style>

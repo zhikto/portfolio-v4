@@ -10,13 +10,14 @@
 <style lang="scss">
 @import "assets/style/global.scss";
 .profile-image {
-  width: 50%;
-  will-change: opacity, transform;
-  transform: translate3d(0,0,0);
+  width: 560px;
+  height: 100vh;
 
   img {
     width: 100%;
+    height: 100%;
     filter: grayscale(100%);
+    object-fit: cover;
   }
 }
 
