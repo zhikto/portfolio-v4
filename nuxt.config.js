@@ -1,4 +1,5 @@
 const uri = 'https://taito-hasegawa.com'
+require('dotenv').config()
 
 export default {
   router: {

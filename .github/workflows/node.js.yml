@@ -1,11 +1,8 @@
 name: Build and Deploy
 on:
-  # mainブランチへプッシュされたタイミングで実行
   push:
     branches: [master]
-  # microCMS から GitHub Actions に Webhook 通知が飛んできたタイミングで実行
   repository_dispatch:
-    # []の中は、microCMS の Webhook　設定で設定したトリガーイベント名
     types: [work_update]
 
 jobs:
@@ -15,28 +12,25 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-      # リポジトリをチェックアウト
       - name: Checkout Repo
-        # uses: actions/checkout@master
         uses: actions/checkout@v2
-      # Node.js のセット
+
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      # 依存パッケージのインストール
+
       - name: Install Dependencies
         run: npm install
-      # プロジェクトごとの　npm のビルドコマンド
-      - name: Build
-        run: npm run generate
-      # 以下、ssgの場合: ssg ビルド
+
+      - name: Add .env File
+        run: |
+          echo SERVICE_DOMAIN=${{ secrets.SERVICE_DOMAIN }} >> .env
+          echo API_KEY=${{ secrets.API_KEY }} >> .env
+
       - name: Generate static page
-        env:
-          MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
-          MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
         run: npm run generate
-      # Firebase にデプロイ
+
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
