@@ -8,19 +8,19 @@
         <p>{{ work.tag }}</p>
       </div>
       <ul class="work-info section">
-        <li v-show="work.overview">
+        <li v-if="work.overview">
           <p>概要</p>
           <p>{{ work.overview }}</p>
         </li>
-        <li v-show="work.theme">
+        <li v-if="work.theme">
           <p>テーマ</p>
           <p>{{ work.theme }}</p>
         </li>
-        <li v-show="work.role">
+        <li v-if="work.role">
           <p>担当</p>
           <p>{{ work.role }}</p>
         </li>
-        <li v-show="work.period">
+        <li v-if="work.period">
           <p>期間</p>
           <p>{{ work.period }}</p>
         </li>
@@ -94,7 +94,7 @@ export default {
         {
           hid: "og:description",
           property: "og:description",
-          content: this.meta.description,
+          content: this.work ? this.work.subTitle : '',
         },
         { hid: "og:url", property: "og:url", content: this.meta.url },
       ],
@@ -108,7 +108,7 @@ export default {
 
 .work-image-gallery {
   width: 100%;
-  height: auto;
+  height: 100vh;
   overflow-y: scroll;
   background-color: $background;
 

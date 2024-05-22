@@ -1,8 +1,8 @@
 <template>
   <div class="detail-container">
     <!-- 日記の表示 -->
-    <div class="work-about">
-      <div class="work-title section">
+    <div class="diary-about">
+      <div class="diary-title section">
         <h1>{{ diary.title }}</h1>
         <h2>{{ diary.date }}</h2>
       </div>
@@ -78,7 +78,7 @@ export default {
 <style lang="scss">
 @import "assets/style/global.scss";
 
-.work-about {
+.diary-about {
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
@@ -91,7 +91,7 @@ export default {
     will-change: transform, opacity;
   }
 
-  .work-title {
+  .diary-title {
     h1 {
       font-size: 40px;
       margin-bottom: 16px;
@@ -107,7 +107,7 @@ export default {
     }
   }
 
-  .work-info {
+  .diary-info {
     padding: 0;
 
     li {
@@ -180,12 +180,12 @@ export default {
   }
 }
 
-.work-about::-webkit-scrollbar {
+.diary-about::-webkit-scrollbar {
   display: none;
 }
 
 @media screen and (max-width: 800px) {
-  .work-image-gallery {
+  .diary-image-gallery {
     width: 100%;
     overflow-y: initial;
 
@@ -196,13 +196,13 @@ export default {
     }
   }
 
-  .work-about {
+  .diary-about {
     width: 100%;
     height: auto;
     overflow-y: initial;
     padding: 40px 24px;
 
-    .work-title {
+    .diary-title {
       h1 {
         font-size: 20px;
         margin-bottom: 12px;
@@ -218,7 +218,7 @@ export default {
       }
     }
 
-    .work-info {
+    .diary-info {
       li {
         width: 100%;
         margin-bottom: 8px;
