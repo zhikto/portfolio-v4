@@ -3,7 +3,7 @@ on:
   push:
     branches: [master]
   repository_dispatch:
-    types: [work_update]
+    types: [work_update, profile_update, diary_update]
 
 jobs:
   build:
