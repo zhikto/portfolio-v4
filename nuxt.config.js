@@ -25,7 +25,30 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   generate: {
-    fallback: true
+    fallback: true,
+    async routes() {
+      // ここで静的生成するページを取得して返す
+      // microCMSからデータを取得して動的にページを生成する場合はここにロジックを追加
+      console.log('Generating static routes...')
+      const axios = require('axios')
+      const serviceDomain = process.env.SERVICE_DOMAIN
+      const apiKey = process.env.API_KEY
+      const config = {
+        headers: { 'X-API-KEY': apiKey }
+      }
+
+      try {
+        const worksResponse = await axios.get(`https://${serviceDomain}.microcms.io/api/v1/works`, config)
+        const works = worksResponse.data.contents
+        console.log('Works:', works)
+        const routes = works.map(work => `/work/${work.id}`)
+        console.log('Generated routes:', routes)
+        return routes
+      } catch (error) {
+        console.error('Failed to fetch works:', error)
+        return []
+      }
+    }
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -72,6 +95,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/adobe-fonts',
+    '~/plugins/microcms'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
