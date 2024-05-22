@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
   # mainブランチへプッシュされたタイミングで実行
   push:
-    branches: [main]
+    branches: [master]
   # microCMS から GitHub Actions に Webhook 通知が飛んできたタイミングで実行
   repository_dispatch:
     # []の中は、microCMS の Webhook　設定で設定したトリガーイベント名
