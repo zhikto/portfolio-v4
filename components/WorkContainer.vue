@@ -31,6 +31,10 @@
     <!-- 画像ギャラリー -->
     <div class="work-image-gallery">
       <div class="image-list">
+        <picture class="image-container">
+          <source :srcset="work.thumbnail.url + '?fm=webp'" type="image/webp" />
+          <img :src="work.thumbnail.url" />
+        </picture>
         <picture v-for="(image, index) in work.workImage" :key="index" class="image-container">
           <source :srcset="image.Image.url + '?fm=webp'" type="image/webp" />
           <img :src="image.Image.url" />
@@ -243,6 +247,7 @@ export default {
 @media screen and (max-width: 800px) {
   .work-image-gallery {
     width: 100%;
+    height: auto;
     overflow-y: initial;
 
     .image-list {
