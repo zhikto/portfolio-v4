@@ -74,6 +74,7 @@ export default {
           targets: ".image-container",
           opacity: [0, 1],
           duration: 800,
+          translateY: [50, 0],
           delay: anime.stagger(100),
         },
         "-=800"
@@ -92,14 +93,22 @@ export default {
   methods: {
     toggleGallery() {
       this.isGalleryExpanded = !this.isGalleryExpanded;
-      if (this.isGalleryExpanded) {
-        anime({
-          targets: ".expanded .image-container",
-          opacity: [0, 1],
-          duration: 800,
-          delay: anime.stagger(100),
-        });
-      }
+      // if (this.isGalleryExpanded) {
+      //   anime({
+      //     targets: ".expanded .image-container",
+      //     opacity: [0, 1],
+      //     duration: 800,
+      //     delay: anime.stagger(100),
+      //   });
+      // }
+    },
+    loadFullImage(index) {
+      const image = this.work.workImage[index];
+      const imgElement = new Image();
+      imgElement.src = image.Image.url;
+      imgElement.onload = () => {
+        this.$set(this.work.workImage, index, { ...image, loaded: true });
+      };
     }
   },
   head() {
@@ -372,8 +381,10 @@ export default {
     .toggle-name {
       font-size: 10px;
       color: $blue;
-      line-height: 40px; /* Central alignment vertically */
-      text-align: center; /* Central alignment horizontally */
+      line-height: 40px;
+      /* Central alignment vertically */
+      text-align: center;
+      /* Central alignment horizontally */
       position: absolute;
       top: 0;
       right: 18px;
