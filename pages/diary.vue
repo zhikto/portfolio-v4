@@ -14,7 +14,7 @@
         <!--作品名・制作年-->
         <div class="diary-info">
           <div class="info-text">
-            <p>{{ diary.date }}</p>
+            <p>{{ formatDate(diary.date) }}</p>
           </div>
           <p>{{ diary.title }}</p>
         </div>
@@ -44,6 +44,13 @@ export default {
     return {
       diary: diary,
     };
+  },
+  methods: {
+    formatDate(dateString) {
+      const options = { month: 'short', day: 'numeric', year: 'numeric' };
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', options);
+    }
   },
   mounted() {
     /*
@@ -156,6 +163,7 @@ export default {
       text-decoration: none;
 
       .diary-info {
+
         /*
       position: absolute;
       bottom: 0;

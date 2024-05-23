@@ -1,10 +1,14 @@
 <template>
-  <div class="detail-container">
+  <div class="diary-container">
     <!-- 日記の表示 -->
     <div class="diary-about">
+      <picture class="diary-top-image">
+        <source :srcset="diary.thumbnail.url + '?fm=webp'" type="image/webp" />
+        <img :src="diary.thumbnail.url" />
+      </picture>
       <div class="diary-title section">
         <h1>{{ diary.title }}</h1>
-        <h2>{{ diary.date }}</h2>
+        <h2>{{ formatDate(diary.date) }}</h2>
       </div>
       <div class="description section" v-html="diary.text"></div>
     </div>
@@ -43,6 +47,13 @@ export default {
         "-=800"
       );
   },
+  methods: {
+    formatDate(dateString) {
+      const options = { month: 'short', day: 'numeric', year: 'numeric' };
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', options);
+    }
+  },
   data() {
     const url = "https://taito-hasegawa.com" + `${this.$route.path}`;
     return {
@@ -78,11 +89,28 @@ export default {
 <style lang="scss">
 @import "assets/style/global.scss";
 
-.diary-about {
+.diary-top-image {
+  padding-bottom: 40px;
+}
+
+.diary-container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  overflow-y: hidden;
+
+  display: flex;
+  justify-content: center;
+
+  overflow-x: hidden;
+
+  background-color: $background;
+}
+
+.diary-about {
+  width: 560px;
+  height: auto;
   overflow-y: scroll;
-  padding: 80px 40px;
+  //padding: 80px 40px;
   background-color: $background;
   color: $black;
 
@@ -139,9 +167,9 @@ export default {
 
     p {
       font-size: 16px;
-      line-height: 175%;
+      line-height: 200%;
       margin-bottom: 48px;
-      letter-spacing: 0.02rem;
+      letter-spacing: 0.015rem;
       font-feature-settings: "palt";
       text-align: justify;
     }
@@ -185,6 +213,18 @@ export default {
 }
 
 @media screen and (max-width: 800px) {
+  .diary-container {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column-reverse;
+    grid-gap: 0;
+
+    overflow-x: hidden;
+  }
+
   .diary-image-gallery {
     width: 100%;
     overflow-y: initial;
@@ -200,7 +240,7 @@ export default {
     width: 100%;
     height: auto;
     overflow-y: initial;
-    padding: 40px 24px;
+    //padding: 40px 24px;
 
     .diary-title {
       h1 {

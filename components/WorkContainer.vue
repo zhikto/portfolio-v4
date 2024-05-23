@@ -29,7 +29,7 @@
       <div class="copyright">{{ work.copyright }}</div>
     </div>
     <!-- 画像ギャラリー -->
-    <div class="work-image-gallery">
+    <div class="work-image-gallery" :class="{ expanded: isGalleryExpanded }">
       <div class="image-list">
         <picture class="image-container">
           <source :srcset="work.thumbnail.url + '?fm=webp'" type="image/webp" />
@@ -40,6 +40,10 @@
           <img :src="image.Image.url" />
         </picture>
       </div>
+    </div>
+    <div :class="['toggle-button', { 'expanded': isGalleryExpanded }]" @click="toggleGallery">
+      <div class="toggle-circle"></div>
+      <p class="toggle-name">GALLERY</p>
     </div>
   </div>
 </template>
@@ -82,7 +86,21 @@ export default {
         type: "article",
         url: url,
       },
+      isGalleryExpanded: false,
     };
+  },
+  methods: {
+    toggleGallery() {
+      this.isGalleryExpanded = !this.isGalleryExpanded;
+      if (this.isGalleryExpanded) {
+        anime({
+          targets: ".expanded .image-container",
+          opacity: [0, 1],
+          duration: 800,
+          delay: anime.stagger(100),
+        });
+      }
+    }
   },
   head() {
     return {
@@ -122,6 +140,8 @@ export default {
     .image-container {
       border-bottom: 1px solid $white;
       will-change: transform, opacity;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
 
       &:last-child {
         border-bottom: 0;
@@ -131,6 +151,10 @@ export default {
         width: 100%;
       }
     }
+  }
+
+  &.expanded .image-list .image-container {
+    display: block !important;
   }
 }
 
@@ -244,6 +268,10 @@ export default {
   display: none;
 }
 
+.toggle-button {
+  display: none;
+}
+
 @media screen and (max-width: 800px) {
   .work-image-gallery {
     width: 100%;
@@ -314,6 +342,56 @@ export default {
 
     .copyright {
       font-size: 9px;
+    }
+  }
+
+  .toggle-button {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 107px;
+    height: 40px;
+    margin: 16px;
+    background: $white;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+
+    .toggle-circle {
+      width: 32px;
+      height: 32px;
+      background: $blue;
+      border-radius: 50%;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    .toggle-name {
+      font-size: 10px;
+      color: $blue;
+      line-height: 40px; /* Central alignment vertically */
+      text-align: center; /* Central alignment horizontally */
+      position: absolute;
+      top: 0;
+      right: 18px;
+      transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+  }
+
+  .toggle-button.expanded {
+    background: $blue;
+
+    .toggle-circle {
+      background: $white;
+      left: calc(100% - 36px);
+    }
+
+    .toggle-name {
+      color: $white;
+      right: calc(100% - 60px);
     }
   }
 }
