@@ -219,7 +219,6 @@ export default {
     overflow-y: scroll;
 
     display: flex;
-    flex-direction: column-reverse;
     grid-gap: 0;
 
     overflow-x: hidden;
