@@ -72,9 +72,6 @@ export default {
           targets: "#orange-circle",
           scale: [1, 7],
           duration: 400,
-          begin: () => {
-            menuContainer.style.pointerEvents = 'none';
-          }
         })
           .add({
             targets: "#menu-container",
@@ -117,9 +114,6 @@ export default {
               targets: "#orange-circle",
               scale: [7, 1],
               duration: 400,
-              complete: () => {
-                menuContainer.style.pointerEvents = 'auto';
-              }
             },
             "-=200"
           );
