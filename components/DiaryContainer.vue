@@ -168,7 +168,7 @@ export default {
     p {
       font-size: 16px;
       line-height: 200%;
-      margin-bottom: 48px;
+      margin: 24px 0;
       letter-spacing: 0.015rem;
       font-feature-settings: "palt";
       text-align: justify;
@@ -183,6 +183,8 @@ export default {
     img {
       display: block;
       max-width: 100%;
+      height: auto;
+      padding: 8px 0;
     }
 
     iframe {
@@ -281,7 +283,8 @@ export default {
 
       p {
         font-size: 14px;
-        margin-bottom: 40px;
+        margin-top: 20px;
+        margin-bottom: 20px;
       }
 
       a {
