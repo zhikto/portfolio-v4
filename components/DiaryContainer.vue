@@ -91,6 +91,15 @@ export default {
 
 .diary-top-image {
   padding-bottom: 40px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .diary-container {
