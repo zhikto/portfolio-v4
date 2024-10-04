@@ -32,6 +32,7 @@ export default {
       isMenu: true,
       currentPage: '',
       previousWidth: 0, // 初期値を設定
+      resizeTimeout: null, // デバウンス用のタイムアウト
     };
   },
   watch: {
@@ -135,10 +136,16 @@ export default {
       }
     },
     handleResize() {
-      if (window.innerWidth !== this.previousWidth) {
-        this.previousWidth = window.innerWidth;
-        this.updateTextPositions();
+      if (this.resizeTimeout) {
+        clearTimeout(this.resizeTimeout);
       }
+      // リサイズ後に座標を再計算
+      this.resizeTimeout = setTimeout(() => {
+        if (window.innerWidth !== this.previousWidth) {
+          this.previousWidth = window.innerWidth;
+          this.updateTextPositions();
+        }
+      }, 200); // デバウンス遅延時間を200msに設定
     },
     updateTextPositions() {
       const worksElement = document.getElementById("works");
