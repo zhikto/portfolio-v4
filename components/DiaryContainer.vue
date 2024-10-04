@@ -92,7 +92,7 @@ export default {
 .diary-top-image {
   padding-bottom: 40px;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
 
   img {
