@@ -90,7 +90,7 @@ export default {
 @import "assets/style/global.scss";
 
 .diary-top-image {
-  padding-bottom: 40px;
+  margin-bottom: 40px;
   width: 100%;
   aspect-ratio: 3 / 2;
   overflow: hidden;
@@ -230,7 +230,7 @@ export default {
     overflow-y: scroll;
 
     display: flex;
-    grid-gap: 0;
+    grid-gap: 40px;
 
     overflow-x: hidden;
   }
