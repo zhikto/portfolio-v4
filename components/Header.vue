@@ -5,7 +5,16 @@
     <div class="logo">
       <nuxt-link to="/">長谷川泰斗</nuxt-link>
       <p>/</p>
-      <p>{{ currentPage }}</p>
+      <!-- currentPageをリンクに変更 -->
+      <p v-if="currentPage === 'WORKS'">
+        <nuxt-link to="/">WORKS</nuxt-link>
+      </p>
+      <p v-if="currentPage === 'ABOUT'">
+        <nuxt-link to="/about">ABOUT</nuxt-link>
+      </p>
+      <p v-if="currentPage === 'DIARY'">
+        <nuxt-link to="/diary">DIARY</nuxt-link>
+      </p>
     </div>
     <div @click="handleClick" :class="{ profilestate: isProfile, workstate: isWork }" class="menu-circle"
       id="menu-circle">
