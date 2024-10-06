@@ -165,13 +165,27 @@ export default {
 
   .description {
     h1 {
-      font-size: 14px;
-      margin-bottom: 24px;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: 0.015rem;
+      font-feature-settings: "palt";
+      margin: 40px 0 12px 0;
     }
 
     h2 {
-      font-size: 14px;
-      margin-bottom: 24px;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.015rem;
+      font-feature-settings: "palt";
+      margin: 40px 0 12px 0;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.015rem;
+      font-feature-settings: "palt";
+      margin: 40px 0 12px 0;
     }
 
     p {
@@ -186,7 +200,9 @@ export default {
     a {
       font-size: 16px;
       color: $orange;
-      margin-bottom: 24px;
+      letter-spacing: 0.015rem;
+      font-feature-settings: "palt";
+      margin: 24px 0 12px 0;
     }
 
     img {
@@ -281,23 +297,28 @@ export default {
 
     .description {
       h1 {
-        font-size: 12px;
-        margin-bottom: 24px;
+        font-size: 24px;
+        margin: 32px 0 8px 0;
       }
 
       h2 {
-        font-size: 12px;
-        margin-bottom: 24px;
+        font-size: 20px;
+        margin: 32px 0 8px 0;
+      }
+
+      h3 {
+        font-size: 16px;
+        margin: 32px 0 8px 0;
       }
 
       p {
         font-size: 14px;
-        margin: 24px 0 4px 0;
+        margin: 16px 0 4px 0;
       }
 
       a {
         font-size: 14px;
-        margin-bottom: 40px;
+        margin: 16px 0 4px 0;
       }
     }
 
