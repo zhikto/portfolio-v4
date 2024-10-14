@@ -4,11 +4,17 @@
     <div class="work-container">
       <nuxt-link v-for="work in work.contents" :key="work.id" :to="{ path: `/work/${work.id}` }" class="work-thumbnail">
         <!--作品画像-->
-        <div>
-          <picture class="work-image">
-            <source :srcset="work.thumbnail.url + '?fm=webp'" type="image/webp" />
-            <img :src="work.thumbnail.url" />
-          </picture>
+        <div class="work-image">
+          <nuxt-img 
+            :src="work.thumbnail.url" 
+            alt="work.title"
+            class="work-image"
+            sizes="sm:480px md:800px lg:1024px"
+            fit="cover"
+            loading="lazy"
+            format="webp"
+            quality="80"
+          />
         </div>
         <!--作品名・制作年-->
         <div class="work-info">

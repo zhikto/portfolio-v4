@@ -5,11 +5,17 @@
       <nuxt-link v-for="diary in diary.contents" :key="diary.id" :to="{ path: `/diary/${diary.id}` }"
         class="diary-thumbnail">
         <!--作品画像-->
-        <div>
-          <picture class="diary-image">
-            <source :srcset="diary.thumbnail.url + '?fm=webp'" type="image/webp" />
-            <img :src="diary.thumbnail.url" />
-          </picture>
+        <div class="diary-image">
+          <nuxt-img 
+            :src="diary.thumbnail.url" 
+            alt="diary.title"
+            class="diary-image"
+            sizes="sm:480px md:800px lg:1024px"
+            fit="cover"
+            loading="lazy"
+            format="webp"
+            quality="80"
+          />
         </div>
         <!--作品名・制作年-->
         <div class="diary-info">

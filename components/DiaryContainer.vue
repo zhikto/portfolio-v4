@@ -2,10 +2,18 @@
   <div class="diary-container">
     <!-- 日記の表示 -->
     <div class="diary-about">
-      <picture class="diary-top-image">
-        <source :srcset="diary.thumbnail.url + '?fm=webp'" type="image/webp" />
-        <img :src="diary.thumbnail.url" />
-      </picture>
+      <div class="diary-top-image">
+          <nuxt-img 
+            :src="diary.thumbnail.url" 
+            alt="diary.title"
+            class="diary-top-image"
+            sizes="sm:480px md:800px lg:1024px"
+            fit="cover"
+            loading="lazy"
+            format="webp"
+            quality="80"
+          />
+        </div>
       <div class="diary-title section">
         <h1>{{ diary.title }}</h1>
         <h2>{{ formatDate(diary.date) }}</h2>

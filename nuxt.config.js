@@ -102,7 +102,19 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['nuxt-microcms-module', '@nuxtjs/google-gtag'],
+  buildModules: [
+    'nuxt-microcms-module',
+    '@nuxtjs/google-gtag',
+    '@nuxt/image'
+  ],
+  image: {
+    domains: ['images.microcms-assets.io'],  // microCMSの画像ホストを追加
+    screens: {
+      xs: 320,
+      md: 800,
+      lg: 1280,
+    }
+  },
   microcms: {
     options: {
       serviceDomain: process.env.SERVICE_DOMAIN,
