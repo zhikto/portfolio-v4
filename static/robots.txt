@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://taito-hasegawa.com/sitemap.xml
