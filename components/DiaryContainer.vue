@@ -3,17 +3,9 @@
     <!-- 日記の表示 -->
     <div class="diary-about">
       <div class="diary-top-image">
-          <nuxt-img 
-            :src="diary.thumbnail.url" 
-            alt="diary.title"
-            class="diary-top-image"
-            sizes="sm:480px md:800px lg:1024px"
-            fit="cover"
-            loading="lazy"
-            format="webp"
-            quality="80"
-          />
-        </div>
+        <nuxt-img :src="diary.thumbnail.url" alt="diary.title" class="diary-top-image"
+          sizes="sm:480px md:800px lg:1024px" fit="cover" loading="lazy" format="webp" quality="80" />
+      </div>
       <div class="diary-title section">
         <h1>{{ diary.title }}</h1>
         <h2>{{ formatDate(diary.date) }}</h2>
@@ -205,6 +197,24 @@ export default {
       text-align: justify;
     }
 
+    ul {
+      font-size: 16px;
+      line-height: 200%;
+      letter-spacing: 0.015rem;
+      font-feature-settings: "palt";
+      text-align: justify;
+      padding-inline-start: 24px;
+    }
+
+    ol {
+      font-size: 16px;
+      line-height: 200%;
+      letter-spacing: 0.015rem;
+      font-feature-settings: "palt";
+      text-align: justify;
+      padding-inline-start: 24px;
+    }
+
     a {
       font-size: 16px;
       color: $orange;
@@ -322,6 +332,16 @@ export default {
       p {
         font-size: 14px;
         margin: 16px 0 4px 0;
+      }
+
+      ul {
+        font-size: 14px;
+        padding-inline-start: 20px;
+      }
+
+      ol {
+        font-size: 14px;
+        padding-inline-start: 20px;
       }
 
       a {
