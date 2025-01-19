@@ -220,7 +220,7 @@ export default {
     blockquote {
       padding: 0 16px;
       margin: 16px 0;
-      border-left: 2px solid $aaa;
+      border-left: 2px solid #aaa;
 
       p {
         font-size: 14px;
@@ -365,7 +365,7 @@ export default {
       blockquote {
         padding: 0 14px;
         margin: 14px 0;
-        border-left: 2px solid $aaa;
+        border-left: 2px solid #aaa;
 
         p {
           font-size: 12px;
