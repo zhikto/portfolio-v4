@@ -62,7 +62,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'TAITO HASEGAWA WORKS' },
+      { hid: 'description', name: 'description', content: 'TAITO HASEGAWA. Product Designer. じぶんと、みんなを、没頭させる道具と仕組みをつくります。' },
       { hid: 'keywords', name: 'keywords', content: 'taitohasegawa,長谷川泰斗,taito,hasegawa,長谷川,泰斗,design,product,デザイン,プロダクト' },
 
       { hid: 'og:site_name', property: 'og:site_name', content: 'TAITO HASEGAWA WORKS' },
