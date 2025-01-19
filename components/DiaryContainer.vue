@@ -206,7 +206,7 @@ export default {
       letter-spacing: 0.015rem;
       font-feature-settings: "palt";
       text-align: justify;
-      padding-inline-start: 24px;
+      padding-inline-start: 28px;
     }
 
     ol {
@@ -216,7 +216,7 @@ export default {
       letter-spacing: 0.015rem;
       font-feature-settings: "palt";
       text-align: justify;
-      padding-inline-start: 24px;
+      padding-inline-start: 28px;
     }
 
     hr {
