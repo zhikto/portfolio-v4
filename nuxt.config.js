@@ -75,7 +75,7 @@ export default {
 
       { hid: 'fb:app_id', property: 'fb:app_id', content: 'App-ID' },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-      { hid: 'twitter:site', name: 'twitter:site', content: '@Twitter' },
+      { hid: 'twitter:site', name: 'twitter:site', content: '@taito_hasegawa' },
 
       { name: 'format-detection', content: 'telephone=no' }
     ],
