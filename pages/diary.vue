@@ -113,9 +113,10 @@ export default {
         justify-content: space-between;
 
         p {
-          line-height: 100%;
+          line-height: 1em;
           font-size: 14px;
           margin: 16px 0;
+          letter-spacing: -0.03em;
         }
       }
 

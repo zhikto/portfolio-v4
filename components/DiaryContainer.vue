@@ -137,6 +137,8 @@ export default {
     h2 {
       font-size: 16px;
       margin-bottom: 16px;
+      line-height: 1em;
+      letter-spacing: -0.03em;
     }
 
     p {
