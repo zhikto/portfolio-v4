@@ -217,6 +217,10 @@ export default {
       padding-inline-start: 24px;
     }
 
+    hr {
+      margin: 24px 0 12px;
+    }
+
     blockquote {
       padding: 0 16px;
       margin: 16px 0;
@@ -370,6 +374,10 @@ export default {
         p {
           font-size: 12px;
         }
+      }
+
+      hr {
+        margin: 16px 0 4px;
       }
 
       a {
