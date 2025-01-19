@@ -168,7 +168,7 @@ export default {
   .description {
     h1 {
       font-size: 32px;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: 0.015rem;
       font-feature-settings: "palt";
       margin: 80px 0 16px 0;
@@ -176,7 +176,7 @@ export default {
 
     h2 {
       font-size: 24px;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: 0.015rem;
       font-feature-settings: "palt";
       margin: 40px 0 12px 0;
@@ -184,7 +184,7 @@ export default {
 
     h3 {
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: 0.015rem;
       font-feature-settings: "palt";
       margin: 40px 0 12px 0;
