@@ -38,7 +38,7 @@ export default {
       }
 
       try {
-        const worksResponse = await axios.get(`https://${serviceDomain}.microcms.io/api/v1/works`, config)
+        const worksResponse = await axios.get(`https://${serviceDomain}.microcms.io/api/v1/work`, config)
         const works = worksResponse.data.contents
         console.log('Works:', works)
         const routes = works.map(work => `/work/${work.id}`)
