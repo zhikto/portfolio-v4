@@ -122,6 +122,7 @@ export default {
       p {
         line-height: 100%;
         font-size: 20px;
+        line-height: 1.2em;
       }
     }
 
@@ -188,7 +189,7 @@ export default {
         }
 
         p {
-          font-size: 20px;
+          font-size: 18px;
         }
       }
 
