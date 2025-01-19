@@ -136,7 +136,7 @@ export default {
       will-change: opacity;
       transform: translate3d(0, 0, 0);
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 11 / 7;
       border-radius: 8px;
       overflow: hidden;
 
@@ -203,8 +203,8 @@ export default {
         will-change: opacity;
         transform: translate3d(0, 0, 0);
         width: 100%;
-        aspect-ratio: 16 / 9;
-        border-radius: 8px;
+        aspect-ratio: 11 / 7;
+        border-radius: 6px;
         overflow: hidden;
 
         img {
