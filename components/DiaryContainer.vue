@@ -359,13 +359,13 @@ export default {
       ul {
         font-size: 14px;
         margin: 16px 0 4px 0;
-        padding-inline-start: 20px;
+        padding-inline-start: 24px;
       }
 
       ol {
         font-size: 14px;
         margin: 16px 0 4px 0;
-        padding-inline-start: 20px;
+        padding-inline-start: 24px;
       }
 
       blockquote {
