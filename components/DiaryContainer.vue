@@ -215,6 +215,20 @@ export default {
       padding-inline-start: 24px;
     }
 
+    blockquote {
+      padding: 0 16px;
+      margin: 16px 0;
+      border-left: 2px solid $aaa;
+
+      p {
+        font-size: 14px;
+        line-height: 200%;
+        letter-spacing: 0.015rem;
+        font-feature-settings: "palt";
+        text-align: justify;
+      }
+    }
+
     a {
       font-size: 16px;
       color: $orange;
@@ -342,6 +356,16 @@ export default {
       ol {
         font-size: 14px;
         padding-inline-start: 20px;
+      }
+
+      blockquote {
+        padding: 0 14px;
+        margin: 14px 0;
+        border-left: 2px solid $aaa;
+
+        p {
+          font-size: 12px;
+        }
       }
 
       a {
