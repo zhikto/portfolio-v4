@@ -200,6 +200,7 @@ export default {
     ul {
       font-size: 16px;
       line-height: 200%;
+      margin: 24px 0 12px 0;
       letter-spacing: 0.015rem;
       font-feature-settings: "palt";
       text-align: justify;
@@ -209,6 +210,7 @@ export default {
     ol {
       font-size: 16px;
       line-height: 200%;
+      margin: 24px 0 12px 0;
       letter-spacing: 0.015rem;
       font-feature-settings: "palt";
       text-align: justify;
@@ -350,11 +352,13 @@ export default {
 
       ul {
         font-size: 14px;
+        margin: 16px 0 4px 0;
         padding-inline-start: 20px;
       }
 
       ol {
         font-size: 14px;
+        margin: 16px 0 4px 0;
         padding-inline-start: 20px;
       }
 
